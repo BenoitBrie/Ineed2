@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset ('css/skel.css') }}" />
+    <link rel="stylesheet" href="{{ asset ('css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset ('css/style-xlarge.css') }}" />
+{% endblock %}
+
+{% block body %}
+
+    {% include 'components/_nav.html.twig' %}
+
+    {% block content '' %}
+
+    {% include 'components/_footer.html.twig' %}
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset ('js/jquery.min.js') }}"></script>
+    <script src="{{ asset ('js/skel.min.js') }}"></script>
+    <script src="{{ asset ('js/skel-layers.min.js') }}"></script>
+    <script src="{{ asset ('js/init.js') }}"></script>
+{% endblock %}
