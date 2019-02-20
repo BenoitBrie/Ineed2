@@ -1,9 +1,16 @@
 {% extends "base.html.twig" %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset ('css/skel.css') }}" />
-    <link rel="stylesheet" href="{{ asset ('css/style.css') }}" />
-    <link rel="stylesheet" href="{{ asset ('css/style-xlarge.css') }}" />
+    <link rel="shortcut icon" href="images/gt_favicon.png">
+
+    <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- Custom styles for our template -->
+    <link rel="stylesheet" href="css/bootstrap-theme.css" media="screen" >
+    <link rel="stylesheet" href="css/main.css">
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
 {% endblock %}
 
 {% block body %}
@@ -17,8 +24,9 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset ('js/jquery.min.js') }}"></script>
-    <script src="{{ asset ('js/skel.min.js') }}"></script>
-    <script src="{{ asset ('js/skel-layers.min.js') }}"></script>
-    <script src="{{ asset ('js/init.js') }}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="js/headroom.min.js"></script>
+    <script src="js/jQuery.headroom.min.js"></script>
+    <script src="js/template.js"></script>
 {% endblock %}
