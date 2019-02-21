@@ -1,12 +1,31 @@
-<header id="header" class="skel-layers-fixed">
-    <h1><a href="#">Ion</a></h1>
-    <nav id="nav">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="left-sidebar.html">Left Sidebar</a></li>
-            <li><a href="right-sidebar.html">Right Sidebar</a></li>
-            <li><a href="no-sidebar.html">No Sidebar</a></li>
-            <li><a href="#" class="button special">Sign Up</a></li>
-        </ul>
-    </nav>
-</header>
+<div class="navbar navbar-inverse navbar-fixed-top headroom">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
+                        class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
+            <a class="navbar-brand" href="{{ path('home') }}"><img alt="INEED"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav pull-right">
+                <li class="active"><a href="{{ path('home') }}">Accueil</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nos Annonces<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        {% for cat in categories %}
+                            <li><a href="{{ path('front_categorie', {
+                                    slug : cat.slug
+                                }) }}">{{ cat.nom }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li><a href="{{ path('security_deconnexion') }}">Déconnexion</a></li>
+                <li><a href="#">Contact</a></li>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li><a class="btn" href="{{ path('annonce_new') }}">D&Eacute;POSER UNE ANNONCE</a></li>
+                {% else %}
+                    <li><a class="btn" href="{{ path('membre_inscription') }}">INSCRIPTION / CONNEXION</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>

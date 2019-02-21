@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Les annonces
+{% endblock %}
+
+{% block content %}
+
+    {% for annonce in annonces %}
+        <p>{{ annonce.titre }}</p>
+    {% endfor %}
+
+{% endblock %}
+
+
