@@ -1,0 +1,56 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Connexion
+{% endblock %}
+
+{% block content %}
+
+    <header id="head" class="secondary"></header>
+
+    <div class="container">
+
+        <ol class="breadcrumb">
+            <li><a href="{{ path('home') }}">Accueil</a></li>
+            <li class="active">Connexion</li>
+        </ol>
+
+        <div class="row">
+            <article class="col-xs-12 maincontent">
+                <header class="page-header">
+                    <h1 class="page-title">Connexion</h1>
+                </header>
+                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h3 class="thin text-center">Connexion à votre compte</h3>
+                            <p class="text-center text-muted">Pas encore membre ?
+                                <a href="{{ path('membre_inscription') }}">
+                                    Inscrivez-vous</a> <br>C’est gratuit (et ça le restera toujours)</p>
+                            <hr>
+                            {{ form_start(form) }}
+                            <div class="top-margin">
+                                <label>Pseudo/Email <span class="text-danger">*</span></label>
+                                {{ form_widget(form.email) }}
+                            </div>
+                            <div class="top-margin">
+                                <label>Password <span class="text-danger">*</span></label>
+                                {{ form_widget(form.password) }}
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <b><a href="">Mot de passe oublié ?</a></b>
+                                </div>
+                                <div class="col-lg-4 text-right">
+                                    {{ form_widget(form.submit) }}
+                                </div>
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+{% endblock %}

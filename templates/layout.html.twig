@@ -1,5 +1,6 @@
 {% extends "base.html.twig" %}
 
+{% set categories = categorie_repository.findAll() %}
 
 {% block stylesheets %}
     <link rel="shortcut icon" href="{{ asset ('images/') }}">

@@ -1,7 +1,13 @@
 security:
+    encoders:
+        App\Entity\Membre: bcrypt
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory: { memory: ~ }
+        membre_provider:
+            entity:
+                class: App\Entity\Membre
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -14,11 +20,23 @@ security:
             # http_basic: true
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
-            # form_login: true
+            form_login:
+                login_path: security_connexion
+                check_path: security_connexion
+                username_parameter: app_login[email]
+                password_parameter: app_login[password]
+            provider: membre_provider
+            logout:
+                path: /deconnexion.html
+                target: /
             # https://symfony.com/doc/current/security/form_login_setup.html
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+    # - { path: ^/admin, roles: ROLE_ADMIN }
+    # - { path: ^/profile, roles: ROLE_USER }
+
+    role_hierarchy:
+        ROLE_AUTEUR: ROLE_MEMBRE
+        ROLE_ADMIN: ROLE_AUTEUR
