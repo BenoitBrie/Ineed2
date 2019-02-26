@@ -125,7 +125,6 @@ class Annonce
     public function setContenu(string $contenu): self
     {
         $this->contenu = $contenu;
-
         return $this;
     }
 
@@ -147,8 +146,6 @@ class Annonce
         return $this;
     }
 
-
-
     public function getDateCreation(): ?\DateTimeInterface
     {
         return $this->dateCreation;
@@ -160,4 +157,10 @@ class Annonce
 
         return $this;
     }
+
+    public function isOwner($idMembre)
+    {
+        return $idMembre == $this->getMembre()->getId();
+    }
+
 }
