@@ -129,17 +129,25 @@ class Annonce
         return $this;
     }
 
+    /**
+     *
+     */
     public function getFeaturedImage()
     {
         return $this->featuredImage;
     }
 
-    public function setFeaturedImage($featuredImage): self
+    /**
+     *
+     *
+     */
+    public function setFeaturedImage($featuredImage)
     {
         $this->featuredImage = $featuredImage;
-
         return $this;
     }
+
+
 
     public function getDateCreation(): ?\DateTimeInterface
     {

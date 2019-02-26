@@ -16,6 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -71,11 +72,11 @@ class AnnonceController extends AbstractController
             $em->flush();
 
             #redirection
-            #return $this->redirectToRoute('', [
-            #    'categorie' => $annonce->getCategorie()->getSlug(),
-            #    'slug' => $annonce->getSlug(),
-            #    'id' => $annonce->getId()
-            #]);
+            return $this->redirectToRoute('home', [
+                'categorie' => $annonce->getCategorie()->getSlug(),
+                'slug' => $annonce->getSlug(),
+                'id' => $annonce->getId()
+            ]);
         }
 
         #passage a la vue
@@ -84,9 +85,17 @@ class AnnonceController extends AbstractController
         ]);
     }
 
+    /**
+     * @param $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @Route("/editer-une-annonce/{id<\d+>}",
+     *     name="annonce_edit")
+     */
     public function editAnnonce($id, Request $request)
     {
         #recup de l'annonce en BDD
+        /** @var Annonce $annonce */
         $annonce = $this->getDoctrine()
             ->getRepository(Annonce::class)
             ->find($id);
@@ -138,7 +147,7 @@ class AnnonceController extends AbstractController
             $em->flush();
 
             #redirection
-            return $this->redirectToRoute('/{categorie<[a-zA-z0-9\-_\/]+>}/{slug<[a-zA-z0-9\-_\/]+>}_{id<\d+>}.html', [
+            return $this->redirectToRoute('home', [
                 'categorie' => $annonce->getCategorie()->getSlug(),
                 'slug' => $annonce->getSlug(),
                 'id' => $annonce->getId()
@@ -151,4 +160,24 @@ class AnnonceController extends AbstractController
         ]);
     }
 
+/*
+    /**
+     * @param $id
+     * @return Response
+     * @Route("/supprimer-une-annonce/{id<\d+>}",
+     *     name="annonce_delete")
+
+    public function deleteAnnonce($id)
+
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em = $id->move($id);
+        $em->flush();
+
+        return new Response('Annonce supprimée');
+
+    }
+    */
+
 }
+

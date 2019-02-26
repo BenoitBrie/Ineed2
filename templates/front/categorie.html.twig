@@ -6,9 +6,63 @@
 
 {% block content %}
 
-    {% for annonce in annonces %}
-        <p>{{ annonce.titre }}</p>
-    {% endfor %}
+   <style>
+        .annonce {
+            border: 2px solid black;
+            border-radius: 15px;
+            margin: 1px;
+        }
+    </style>
+
+    <header id="head" class="secondary"></header>
+
+
+
+
+
+        <!-- container -->
+        <div class="container">
+
+            <ol class="breadcrumb">
+                <li><a href="{{ path('home') }}">Accueil</a></li>
+                <li>{{ categorie.nom }}</li>
+            </ol>
+
+            <div class="row">
+
+
+         {% for annonce in annonces %}
+                <!-- Annonce main content -->
+
+                 <div class="col-sm-4 annonce">
+
+                    <header class="page-header">
+                        <h1 class="page-title text-center">{{ annonce.titre }}</h1>
+                    </header>
+
+                    <img src="{{ asset('images/annonces/' ~ annonce.featuredImage) }}">
+                    <div>{{ annonce.contenu | raw }}</div>
+                    <div>{{ annonce.membre.prenom ~ ' ' ~ annonce.membre.nom }}</div>
+                    <div class="text-right">
+                                {{ annonce.dateCreation | date('d/m/Y') }}
+                    </div>
+
+                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+
+                        <a href="/editer-une-annonce/{{ annonce.id }}" class="btn btn-info btn-xs active" role="button" aria-pressed="true">Modifier l'annonce</a>
+                        <!--<a href="/supprimer-une-annonce/{{ annonce.id }}" class="btn btn-danger btn-sm " role="button" aria-pressed="true">Supprimer l'annonce</a>-->
+                     {% endif %}
+                 </div>
+
+         {% endfor %}
+            </div>
+            <!-- /Annonce -->
+
+        </div>
+
+
+
 
 {% endblock %}
 

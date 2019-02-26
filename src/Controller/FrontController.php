@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Annonce;
 use App\Entity\Categorie;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Tightenco\Collect\Support\Collection;
 
 class FrontController extends AbstractController
 {
@@ -23,9 +25,13 @@ class FrontController extends AbstractController
      */
     public function categorie(Categorie $categorie)
     {
-        $annonces = $categorie->getAnnonces();
+        $annonces = new Collection($categorie->getAnnonces());
+
         return $this->render('front/categorie.html.twig', [
-           'annonces' => $annonces
+           'annonces' => $annonces->sortByDesc(function ($col) {
+               return $col->getDateCreation();
+           }),
+            'categorie'=>$categorie
         ]);
     }
 
