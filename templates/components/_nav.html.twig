@@ -18,10 +18,10 @@
                         {% endfor %}
                     </ul>
                 </li>
-                <li><a href="{{ path('security_deconnexion') }}">Déconnexion</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="{{ path('page_contact') }}">Contact</a></li>
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li><a class="btn" href="{{ path('annonce_new') }}">D&Eacute;POSER UNE ANNONCE</a></li>
+                    <li><a class="btn" href="{{ path('security_deconnexion') }}">Deconnexion</a></li>
                 {% else %}
                     <li><a class="btn" href="{{ path('membre_inscription') }}">INSCRIPTION / CONNEXION</a></li>
                 {% endif %}

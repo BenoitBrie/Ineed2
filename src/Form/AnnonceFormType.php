@@ -26,25 +26,22 @@ class AnnonceFormType extends AbstractType
                     'placeholder' => "Titre de l'annonce"
                 ]
             ])
-
             ->add('categorie', EntityType::class, [
-                'class' => categorie::class,
+                'class' => Categorie::class,
                 'choice_label' => 'nom',
                 'expanded' => false,
-                'multiple' => false
+                'multiple' => false,
+                'label' => false
             ])
-
             ->add('contenu', TextareaType::class, [
                 'label' => "Contenu de l'annonce"
             ])
-
             ->add('featuredImage', FileType::class, [
                 'label' => "Glissez votre photo",
                 'attr' => [
                     'class' => "dropify"
                 ]
             ])
-
             ->add('submit', SubmitType::class, [
                 'label' => "Envoie de l'annonce"
             ]);
