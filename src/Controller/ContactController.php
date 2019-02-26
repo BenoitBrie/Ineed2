@@ -29,7 +29,6 @@ class ContactController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()) {
 
-
             # Sauvegarde en BDD
             $em = $this->getDoctrine()->getManager();
             $em->persist($contact);
@@ -37,10 +36,10 @@ class ContactController extends AbstractController
 
             # Notification
             $this->addFlash('notice',
-                'Félicitation, votre formulaire a ete envoyer!');
+                'Félicitation, votre demande a été envoyée !');
 
             # Redirection
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('page_contact');
 
         }
 

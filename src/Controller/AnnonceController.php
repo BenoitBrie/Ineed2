@@ -45,7 +45,7 @@ class AnnonceController extends AbstractController
         #traitement du formulaire
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             #upload de l'image
             $featuredImage = $annonce->getFeaturedImage();
@@ -71,12 +71,12 @@ class AnnonceController extends AbstractController
             $em->persist($annonce);
             $em->flush();
 
+            # notification
+            $this->addFlash('notice',
+                'Félicitation, votre annonce est en ligne !');
+
             #redirection
-            return $this->redirectToRoute('home', [
-                'categorie' => $annonce->getCategorie()->getSlug(),
-                'slug' => $annonce->getSlug(),
-                'id' => $annonce->getId()
-            ]);
+            return $this->redirectToRoute('mes_annonces');
         }
 
         #passage a la vue
@@ -112,7 +112,7 @@ class AnnonceController extends AbstractController
         $form = $this->createForm(AnnonceFormType::class, $annonce)
             ->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             if ($annonce->getFeaturedImage() != null) {
 
@@ -134,8 +134,7 @@ class AnnonceController extends AbstractController
 
                 #mise a jour image
                 $annonce->setFeaturedImage($fileName);
-            }
-            else {
+            } else {
                 $annonce->setFeaturedImage($featuredImage);
             }
 
@@ -146,12 +145,12 @@ class AnnonceController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
+            # notification
+            $this->addFlash('notice',
+                'Félicitation, votre annonce est à jour !');
+
             #redirection
-            return $this->redirectToRoute('home', [
-                'categorie' => $annonce->getCategorie()->getSlug(),
-                'slug' => $annonce->getSlug(),
-                'id' => $annonce->getId()
-            ]);
+            return $this->redirectToRoute('mes_annonces');
 
         }
 
@@ -160,24 +159,28 @@ class AnnonceController extends AbstractController
         ]);
     }
 
-/*
+
     /**
-     * @param $id
+     * @param Annonce $annonce
      * @return Response
      * @Route("/supprimer-une-annonce/{id<\d+>}",
      *     name="annonce_delete")
-
-    public function deleteAnnonce($id)
-
+     */
+    public function deleteAnnonce(Annonce $annonce)
     {
         $em = $this->getDoctrine()->getManager();
-        $em = $id->move($id);
+        $em->remove($annonce);
         $em->flush();
 
-        return new Response('Annonce supprimée');
+        # notification
+        $this->addFlash('notice',
+            'Votre annonce a bien été supprimée !');
+
+        #redirection
+        return $this->redirectToRoute('mes_annonces');
 
     }
-    */
+
 
 }
 

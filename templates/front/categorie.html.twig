@@ -8,9 +8,32 @@
 
     <style>
         .annonce {
-            border: 2px solid black;
             border-radius: 15px;
-            margin: 1px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+        }
+        .annonce h1 {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .annonce img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .annonce:nth-child(odd) {
+            background-color: #EEEEEE;
+        }
+        .annonce:nth-child(odd) h1 {
+            color:#39b3d7;
+        }
+        .page-title {
+            font-size: 20px;
+        }
+        .breadcrumb {
+            margin-bottom: 15px;
         }
     </style>
 
@@ -24,29 +47,38 @@
             <li>{{ categorie.nom }}</li>
         </ol>
 
-        <div class="row">
+        {% for message in app.flashes('notice') %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="row ">
 
             {% for annonce in annonces %}
                 <!-- Annonce main content -->
 
-                <div class="col-sm-4 annonce">
+                <div class="col-sm-3 annonce">
 
                     <header class="page-header">
-                        <h1 class="page-title text-center">{{ annonce.titre }}</h1>
+                        <h1 class="page-title text-center">{{ annonce.titre | title }}</h1>
                     </header>
 
-                    <img src="{{ asset('images/annonces/' ~ annonce.featuredImage) }}">
+                    <img class="img-responsive" src="{{ asset('images/annonces/' ~ annonce.featuredImage) }}" />
 
                     <div>{{ annonce.contenu | raw }}</div>
-                    <div>{{ annonce.membre.prenom ~ ' ' ~ annonce.membre.nom }}</div>
-                    <div class="text-right">
-                        {{ annonce.dateCreation | date('d/m/Y') }}
-                    </div>
+                    <p>{{ annonce.membre.prenom ~ ' ' ~ annonce.membre.nom }} <br>
+                        <small>Publiée le : {{ annonce.dateCreation | date('d/m/Y') }}</small>
+                    </p>
 
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') and annonce.isOwner(app.user.id) %}
-                        <a href="/editer-une-annonce/{{ annonce.id }}" class="btn btn-info btn-xs active" role="button"
-                           aria-pressed="true">Modifier l'annonce</a>
-                        <!--<a href="/supprimer-une-annonce/{{ annonce.id }}" class="btn btn-danger btn-sm " role="button" aria-pressed="true">Supprimer l'annonce</a>-->
+                    {% if is_granted('IS_AUTHENTICATED_FULLY')
+                        and annonce.isOwner(app.user.id) %}
+                        <a href="/editer-une-annonce/{{ annonce.id }}" class="btn btn-info btn-block active" role="button"
+                           aria-pressed="true">Modifier mon annonce</a>
+                        <a href="{{ path('annonce_delete', {'id': annonce.id}) }}" class="btn btn-danger btn-block" role="button" aria-pressed="true">
+                            Supprimer mon annonce</a>
                     {% endif %}
                 </div>
 
