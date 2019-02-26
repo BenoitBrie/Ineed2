@@ -4,6 +4,8 @@ namespace App\Form;
 
 
 use App\Entity\Annonce;
+use App\Entity\Categorie;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -24,7 +26,13 @@ class AnnonceFormType extends AbstractType
                     'placeholder' => "Titre de l'annonce"
                 ]
             ])
-
+            ->add('categorie', EntityType::class, [
+                'class' => Categorie::class,
+                'choice_label' => 'nom',
+                'expanded' => false,
+                'multiple' => false,
+                'label' => false
+            ])
             ->add('contenu', TextareaType::class, [
                 'label' => "Contenu de l'annonce"
             ])

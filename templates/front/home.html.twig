@@ -12,8 +12,14 @@
         <div class="container">
             <div class="row">
                 <h1 class="lead">Bienvenue sur INEED</h1>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <p><a class="btn btn-default btn-lg" href="" role="button">Annonces</a> <a class="btn btn-action btn-lg"
+                                                                                        href="{{ path('security_deconnexion') }}" role="button">Deconnexion</a></p>
+                {% else %}
                 <p class="tagline">site de mise en relation qui facilite l'entraide et l'échange de services entre particuliers.</p>
-                <p><a class="btn btn-default btn-lg" role="button">INFO</a> <a class="btn btn-action btn-lg" role="button">ANNONCES</a></p>
+                <p><a class="btn btn-default btn-lg" href="" role="button">Annonces</a> <a class="btn btn-action btn-lg"
+                                                                                           href="{{ path('membre_inscription') }}" role="button">Insrciption</a></p>
+                {% endif %}
             </div>
         </div>
     </header>
@@ -30,7 +36,7 @@
             <h3 class="text-center thin">L'échange de services expliqué en 3 étapes</h3>
             <div class="row">
                 <div class="col-md-4 col-sm-6 highlight">
-                    <div class="h-caption"><h4><i class="fa fa-heart fa-5"></i>CRendez un service et créditez votre compteur de temps</h4></div>
+                    <div class="h-caption"><h4><i class="fa fa-heart fa-5"></i>Rendez un service et créditez votre compteur de temps</h4></div>
                     <div class="h-body text-center">
                         <p>Créditez votre compteur temps en répondant aux demandes d'autres Yakasaideur et en leur rendant service</p>
                     </div>

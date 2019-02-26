@@ -24,10 +24,15 @@
                     </div>
                 </div>
                 <div class="col-md-6 widget">
-                    <h3 class="widget-title">Text widget</h3>
+                    <h3 class="widget-title">
+                        Recevoir nos conseils et bonnes pratique une fois pas mois dans votre boite mail
+                    </h3>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Adresse Email</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">Nous ne partagerons jamais votre email avec qui que ce soit.</small>
+                    </div>
                     <div class="widget-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, dolores, quibusdam architecto voluptatem amet fugiat nesciunt placeat provident cumque accusamus itaque voluptate modi quidem dolore optio velit hic iusto vero praesentium repellat commodi ad id expedita cupiditate repellendus possimus unde?</p>
-                        <p>Eius consequatur nihil quibusdam! Laborum, rerum, quis, inventore ipsa autem repellat provident assumenda labore soluta minima alias temporibus facere distinctio quas adipisci nam sunt explicabo officia tenetur at ea quos doloribus dolorum voluptate reprehenderit architecto sint libero illo et hic.</p>
                     </div>
                 </div>
             </div>
@@ -39,11 +44,10 @@
                 <div class="col-md-6 widget">
                     <div class="widget-body">
                         <p class="simplenav">
-                            <a href="#">Acceuil</a> |
-                            <a href="about.html">Annonces</a> |
-                            <a href="sidebar-right.html">Categories</a> |
-                            <a href="contact.html">Contact</a> |
-                            <b><a href="signup.html">Inscription</a></b>
+                            <a href="{{ path('home') }}">Accueil</a> |
+                            <a href="{{ path('annonce_new') }}">Annonces</a> |
+                            <a href="{{ path('page_contact') }}">Contact</a> |
+                            <b><a href="{{ path('membre_inscription') }}">Inscription</a></b>
                         </p>
                     </div>
                 </div>
@@ -51,7 +55,7 @@
                 <div class="col-md-6 widget">
                     <div class="widget-body">
                         <p class="text-right">
-                            © Copyright 2014. Tous droits réservés.
+                            © Copyright 2019. Tous droits réservés.
                         </p>
                     </div>
                 </div>

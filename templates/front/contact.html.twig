@@ -1,0 +1,78 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Page Contact
+{% endblock %}
+
+{% block content %}
+    <style>
+        #bottom{
+            margin-bottom: 30px;
+        }
+        #height{
+            height: 225px;
+        }
+    </style>
+
+    <header id="head" class="secondary"></header>
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="{{ path('home') }}">Home</a></li>
+            <li class="active">Contact</li>
+        </ol>
+        <div class="row">
+            <article class="col-sm-9 maincontent">
+                <header class="page-header">
+                    <h1 class="page-title">Contact</h1>
+                </header>
+                <br>
+                <form>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            {{ form_widget(form.nom) }}
+                        </div>
+                        <div class="col-sm-4">
+                            {{ form_widget(form.email) }}
+                        </div>
+                        <div class="col-sm-4">
+                            {{ form_widget(form.numero) }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            {{ form_widget(form.message) }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-6">
+                        </div>
+                        <div class="col-sm-6 text-right" id="bottom">
+                            {{ form_widget(form.submit) }}
+                        </div>
+                    </div>
+                </form>
+            </article>
+            <aside class="col-sm-3 sidebar sidebar-right">
+                <div class="widget">
+                    <h4>Addresse</h4>
+                    <address>
+                        17 Rue Albert Thomas, 78130 Les Mureaux
+                    </address>
+                    <h4>Telephone</h4>
+                    <address>
+                        + 33 0643563213
+                    </address>
+                </div>
+            </aside>
+        </div>
+    </div>
+    <section class="container-full top-space">
+        <div id="map">
+        {% include 'components/_map.html.twig' %}
+        </div>
+    </section>
+
+
+{% endblock %}
