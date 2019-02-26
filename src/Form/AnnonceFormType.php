@@ -43,7 +43,10 @@ class AnnonceFormType extends AbstractType
                 ]
             ])
             ->add('submit', SubmitType::class, [
-                'label' => "Envoie de l'annonce"
+                'label' => "Publier mon annonce",
+                'attr' => [
+                    'class' => "btn-block   "
+                ]
             ]);
     }
 

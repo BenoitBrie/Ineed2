@@ -11,6 +11,11 @@
             border-radius: 15px;
             margin-bottom: 15px;
             padding-bottom: 15px;
+            box-sizing: border-box;
+            transition: 0.2s ease-in;
+        }
+        .annonce:hover {
+            border: 1px solid #CCC;
         }
         .annonce h1 {
             text-overflow: ellipsis;
@@ -63,7 +68,7 @@
                 <div class="col-sm-3 annonce">
 
                     <header class="page-header">
-                        <h1 class="page-title text-center">{{ annonce.titre | title }}</h1>
+                        <h1 title="{{ annonce.titre }}" class="page-title text-center">{{ annonce.titre | title }}</h1>
                     </header>
 
                     <img class="img-responsive" src="{{ asset('images/annonces/' ~ annonce.featuredImage) }}" />
